@@ -22,7 +22,7 @@ const keystone = new Keystone({
   // seeds data from the `randomuser.me` API if the collection is empty
   onConnect: async () => {
     const { mongoose } = keystone.adapter;
-    // TODO: remove deleteMany
+    // TODO: remove deleteMany to persist data
     await mongoose.models.Employee.deleteMany();
     const documentCount = await mongoose.models.Employee.countDocuments();
     if (!documentCount) {
