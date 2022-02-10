@@ -23,7 +23,7 @@ export const ALL_EMPLOYEES_QUERY = gql`
     }
   }`;
 
-export default function Employees() {
+export default function Employees({ columns }) {
   const { data, error, loading } = useQuery(ALL_EMPLOYEES_QUERY);
   if (loading) return 'loading...';
   if (error) return error.message;
@@ -31,7 +31,12 @@ export default function Employees() {
   return (
     <>
       <CreateModal />
-      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+      {/* use `auto-fit` to determine the # of columns unless the prop `columns`
+          is provided. Min */}
+      <Grid
+        templateColumns={`repeat(${columns || 'auto-fit'}, minmax(100px, 1fr))`}
+        gap={6}
+      >
         {allEmployees.map((employee) => (
           <Employee employee={employee} key={employee.id} />
         ))}

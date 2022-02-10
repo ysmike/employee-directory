@@ -5,6 +5,7 @@ import 'nprogress/nprogress.css';
 import Router from 'next/router';
 import withData from '../lib/withData';
 import Page from '../components/Page';
+import { SearchStateProvider } from '../lib/searchState';
 
 // display loading states on top of the screen when route changes
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -15,9 +16,11 @@ function MyApp({ Component, pageProps, apollo }) {
   return (
     <ApolloProvider client={apollo}>
       <ChakraProvider>
-        <Page>
-          <Component {...pageProps} />
-        </Page>
+        <SearchStateProvider>
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        </SearchStateProvider>
       </ChakraProvider>
     </ApolloProvider>
   );
