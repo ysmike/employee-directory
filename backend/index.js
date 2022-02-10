@@ -40,7 +40,6 @@ const keystone = new Keystone({
           country: employee.location.country,
           photoURL: employee.picture.large,
           countryCode: employee.nat,
-          uuid: employee.login.uuid,
         };
         try {
           await mongoose.model('Employee').create(simplifiedEmployee);
@@ -67,7 +66,6 @@ keystone.createList('Employee', {
     country: { type: Text },
     photoURL: { type: Url },
     countryCode: { type: Text },
-    uuid: { type: Text, isRequired: true, isUnique: true },
   },
 });
 
