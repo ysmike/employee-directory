@@ -1,7 +1,13 @@
+import Head from 'next/head';
 import Employees from '../components/Employees';
 
 export default function Home() {
   return (
-    <Employees />
+    <>
+      <Head>
+        <title>Employee Directory</title>
+      </Head>
+      <Employees />
+    </>
   );
 }
