@@ -67,7 +67,7 @@ export default function CreateModal() {
     lastName: '',
     email: '',
     cell: '',
-    age: 0,
+    age: '',
     gender: '',
     city: '',
     state: '',

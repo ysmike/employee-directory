@@ -7,7 +7,7 @@ export default function Home() {
       <Head>
         <title>Search by Country</title>
       </Head>
-      <Employees byCity />
+      <Employees byCountry />
     </>
   );
 }
