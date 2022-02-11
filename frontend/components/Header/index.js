@@ -7,24 +7,29 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  useColorMode,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import {
   HamburgerIcon,
   CloseIcon,
+  MoonIcon,
+  SunIcon,
 } from '@chakra-ui/icons';
 import MobileNav from './components/MobileNav';
 import DesktopNav from './components/DesktopNav';
 import Search from './components/Search';
+import CreateModal from '../CreateModal';
 
 export default function Header() {
   // custom hook to handle common open, close, or toggle scenarios
   const { isOpen, onToggle } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box>
       {/* top-level flex container */}
       <Flex
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={useColorModeValue('white', 'gray.700')}
         color={useColorModeValue('gray.600', 'white')}
         minH="4rem"
         px={{ base: 4 }}
@@ -63,7 +68,13 @@ export default function Header() {
             <DesktopNav />
           </Flex>
         </Flex>
+        <CreateModal />
         <Search />
+        <Flex onClick={toggleColorMode} ml={5} _hover={{ cursor: 'pointer' }}>
+          {colorMode === 'light'
+            ? <MoonIcon />
+            : <SunIcon />}
+        </Flex>
       </Flex>
       {/* Mobile Drop Down Menu From Tapping Hamburger */}
       <Collapse in={isOpen}>
