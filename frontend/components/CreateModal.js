@@ -1,5 +1,5 @@
-/* eslint-disable import/no-cycle */
 import { useMutation } from '@apollo/client';
+import { AddIcon } from '@chakra-ui/icons';
 import {
   Button,
   FormControl,
@@ -89,7 +89,7 @@ export default function CreateModal() {
   const handleSubmit = async (_event) => {
     // save the input fields in the backend db
     try {
-      const res = await createEmployee();
+      await createEmployee();
       closeModal();
     } catch (e) {
       setNetworkError(e);
@@ -99,12 +99,24 @@ export default function CreateModal() {
   const isRequiredFilledIn = inputs.firstName && inputs.lastName && inputs.email;
   return (
     <>
+      {/* full-size button for destop screen width */}
+      <Button
+        onClick={onOpen}
+        bg={useColorModeValue('green.200', 'white')}
+        color="black"
+        m={5}
+        display={{ base: 'none', md: 'flex' }}
+      >
+        Create Employee
+      </Button>
+      {/* plus button for mobile screen width */}
       <Button
         onClick={onOpen}
         bg={useColorModeValue('green.200', 'gray.200')}
         m={5}
+        display={{ base: 'flex', md: 'none' }}
       >
-        Create Employee
+        <AddIcon />
       </Button>
 
       <Modal
@@ -141,6 +153,7 @@ export default function CreateModal() {
                   placeholder="First name"
                   onChange={handleChange}
                   name="firstName"
+                  value={inputs.firstName}
                 />
               </FormControl>
               <FormControl isRequired>
@@ -149,6 +162,7 @@ export default function CreateModal() {
                   placeholder="Last name"
                   onChange={handleChange}
                   name="lastName"
+                  value={inputs.lastName}
                 />
               </FormControl>
             </Stack>
@@ -159,42 +173,43 @@ export default function CreateModal() {
                 placeholder="Email"
                 onChange={handleChange}
                 name="email"
+                value={inputs.email}
               />
             </FormControl>
             {/* mobile, age & gender */}
             <Stack direction="row" mt={4}>
               <FormControl>
                 <FormLabel>Mobile #</FormLabel>
-                <Input placeholder="Mobile #" onChange={handleChange} name="cell" />
+                <Input placeholder="Mobile #" onChange={handleChange} name="cell" value={inputs.cell} />
               </FormControl>
               <FormControl>
                 <FormLabel>Age</FormLabel>
-                <Input placeholder="Age" onChange={handleChange} name="age" type="number" />
+                <Input placeholder="Age" onChange={handleChange} name="age" type="number" value={inputs.age} />
               </FormControl>
               <FormControl>
                 <FormLabel>Gender</FormLabel>
-                <Input placeholder="Gender" onChange={handleChange} name="gender" />
+                <Input placeholder="Gender" onChange={handleChange} name="gender" value={inputs.gender} />
               </FormControl>
             </Stack>
             {/* city, state & country */}
             <Stack direction="row" mt={4}>
               <FormControl>
                 <FormLabel>City</FormLabel>
-                <Input placeholder="City" onChange={handleChange} name="city" />
+                <Input placeholder="City" onChange={handleChange} name="city" value={inputs.city} />
               </FormControl>
               <FormControl>
                 <FormLabel>State</FormLabel>
-                <Input placeholder="State" onChange={handleChange} name="state" />
+                <Input placeholder="State" onChange={handleChange} name="state" value={inputs.state} />
               </FormControl>
               <FormControl>
                 <FormLabel>Country</FormLabel>
-                <Input placeholder="Country" onChange={handleChange} name="country" />
+                <Input placeholder="Country" onChange={handleChange} name="country" value={inputs.country} />
               </FormControl>
             </Stack>
             {/* photoURL */}
             <FormControl mt={4}>
               <FormLabel>Photo URL</FormLabel>
-              <Input placeholder="Photo URL" onChange={handleChange} name="photoURL" />
+              <Input placeholder="Photo URL" onChange={handleChange} name="photoURL" value={inputs.photoURL} />
             </FormControl>
           </ModalBody>
           {/* save & cancel buttons */}
@@ -202,7 +217,7 @@ export default function CreateModal() {
             <Button colorScheme="blue" mr={3} onClick={handleSubmit} disabled={!isRequiredFilledIn}>
               Save
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={closeModal}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
