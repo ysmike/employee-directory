@@ -10,7 +10,8 @@ import {
   useColorModeValue,
   Link,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import EditButton from './EditButton';
+import InfoDrawer from './InfoDrawer';
 
 export default function Employee({ employee }) {
   const {
@@ -18,20 +19,28 @@ export default function Employee({ employee }) {
   } = employee;
   const fullName = `${firstName} ${lastName}`;
   const location = `${city}, ${country}`;
-  const [isPhoneHovered, setIsPhoneHovered] = useState(false);
-  const [isEmailHovered, setIsEmailHovered] = useState(false);
 
   return (
-    <Center py={5}>
+    <Center p={5}>
       <Box
+        minH={250}
         maxW="250px"
         w="full"
-        bg={useColorModeValue('white', 'gray.800')}
+        bg={useColorModeValue('cyan.50', 'gray.800')}
         boxShadow="2xl"
-        rounded="md"
+        rounded="xl"
         mt={12}
       >
-        <Flex justify="center" mt={-12}>
+
+        <Flex justify="flex-end">
+          <Flex direction="column">
+            <EditButton employee={{ ...employee, fullName }} />
+            <InfoDrawer employee={{ ...employee, fullName }} />
+
+          </Flex>
+        </Flex>
+
+        <Flex justify="center" mt={-10}>
           <Avatar size="xl" src={photoURL} alt="Employee" />
         </Flex>
 
@@ -43,38 +52,26 @@ export default function Employee({ employee }) {
             <Text color="gray.500">{location}</Text>
           </Stack>
 
-          <Flex h={8} p={0}>
+          <Flex h={8} py={10}>
             <Flex
               justify="space-around"
               align="center"
               flex={1}
-              onMouseOver={() => setIsPhoneHovered(true)}
-              onMouseLeave={() => setIsPhoneHovered(false)}
               _hover={{ cursor: 'pointer' }}
             >
-              {!isPhoneHovered ? (
+              <Link href={`tel:${cell}`}>
                 <PhoneIcon w={25} h={25} />
-              ) : (
-                <Link href={`tel:${cell}`}>
-                  <Text fontSize="x-small">{cell}</Text>
-                </Link>
-              )}
+              </Link>
             </Flex>
             <Flex
               justify="space-around"
               align="center"
               flex={1}
-              onMouseOver={() => setIsEmailHovered(true)}
-              onMouseLeave={() => setIsEmailHovered(false)}
               _hover={{ cursor: 'pointer' }}
             >
-              {!isEmailHovered ? (
+              <Link href={`mailto:${email}`}>
                 <EmailIcon w={25} h={25} />
-              ) : (
-                <Link href={`mailto:${email}`}>
-                  <Text fontSize="x-small">{email}</Text>
-                </Link>
-              )}
+              </Link>
             </Flex>
           </Flex>
         </Box>
