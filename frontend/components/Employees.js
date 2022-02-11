@@ -30,10 +30,10 @@ export default function Employees({ columns, byCountry, byCity }) {
   const [selectedCity, setSelectedCity] = useState();
   const { search } = useSearch();
   const uniqueCountries = [...new Set(
-    data?.allEmployees.map((employee) => employee.country).filter(Boolean),
+    data?.allEmployees.map((employee) => employee.country).filter(Boolean).sort(),
   )];
   const uniqueCities = [...new Set(
-    data?.allEmployees.map((employee) => employee.city).filter(Boolean),
+    data?.allEmployees.map((employee) => employee.city).filter(Boolean).sort(),
   )];
 
   const filter = () => {
