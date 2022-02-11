@@ -29,7 +29,7 @@ const CREATE_EMPLOYEE_MUTATION = gql`
     $lastName: String!
     $email: String!
     $cell: String
-    $age: Int
+    $age: String
     $gender: String
     $city: String
     $state: String
@@ -55,6 +55,7 @@ const CREATE_EMPLOYEE_MUTATION = gql`
     firstName
     lastName
     email
+    age
   }
 }
 `;
@@ -112,7 +113,8 @@ export default function CreateModal() {
       {/* plus button for mobile screen width */}
       <Button
         onClick={onOpen}
-        bg={useColorModeValue('green.200', 'gray.200')}
+        bg={useColorModeValue('green.200', 'gray.400')}
+        color="black"
         m={5}
         display={{ base: 'flex', md: 'none' }}
       >

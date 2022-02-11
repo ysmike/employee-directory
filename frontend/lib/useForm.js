@@ -13,7 +13,6 @@ export default function useForm(initial = {}) {
   // copy existing state and overwrite the value of the specified key
   function handleChange({ target: { name, type, value } }) {
     // HTML automatically converts number to text so we coerce back to number
-    if (type === 'number') value = +value;
     setInputs({ ...inputs, [name]: value });
   }
 

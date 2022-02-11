@@ -26,6 +26,10 @@ export default function InfoDrawer({ employee }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { hasCopied, onCopy } = useClipboard(email);
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <>
       {/* match dimensions of the hamburger icon above */}
@@ -63,7 +67,7 @@ export default function InfoDrawer({ employee }) {
             </Stat>
             <Stat>
               <StatLabel>Gender</StatLabel>
-              <StatNumber>{gender}</StatNumber>
+              <StatNumber>{capitalizeFirstLetter(gender)}</StatNumber>
             </Stat>
             <Stat>
               <StatLabel>City</StatLabel>

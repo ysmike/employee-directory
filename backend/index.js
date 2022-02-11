@@ -59,7 +59,7 @@ keystone.createList('Employee', {
     lastName: { type: Text, isRequired: true },
     email: { type: Text, isRequired: true, isUnique: true },
     cell: { type: Text },
-    age: { type: Integer },
+    age: { type: Text },
     gender: { type: Text },
     city: { type: Text },
     state: { type: Text },
