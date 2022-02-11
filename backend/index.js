@@ -23,7 +23,7 @@ const keystone = new Keystone({
   onConnect: async () => {
     const { mongoose } = keystone.adapter;
     // TODO: remove deleteMany to persist data
-    await mongoose.models.Employee.deleteMany();
+    // await mongoose.models.Employee.deleteMany();
     const documentCount = await mongoose.models.Employee.countDocuments();
     if (!documentCount) {
       const { data: { results } } = await axios.get(`${DATA_URL}${DATA_FETCH_COUNT}`);
