@@ -49,7 +49,7 @@ export default function Employee({ employee }) {
             <Heading fontSize={fullName.length > 14 ? 'xl' : '2xl'} fontWeight={500} fontFamily="body">
               {fullName}
             </Heading>
-            <Text color="gray.500" fontSize={location.length > 16 && 'sm'}>{location}</Text>
+            <Text color="gray.500" fontSize={location.length > 16 && 'xs'}>{location}</Text>
           </Stack>
 
           <Flex h={8} py={10}>
@@ -60,7 +60,7 @@ export default function Employee({ employee }) {
               _hover={{ cursor: 'pointer' }}
             >
               <Link href={`tel:${cell}`}>
-                <PhoneIcon w={25} h={25} />
+                <PhoneIcon w={25} h={25} _hover={{ color: 'gray.600' }} />
               </Link>
             </Flex>
             <Flex
@@ -70,7 +70,7 @@ export default function Employee({ employee }) {
               _hover={{ cursor: 'pointer' }}
             >
               <Link href={`mailto:${email}`}>
-                <EmailIcon w={25} h={25} />
+                <EmailIcon w={25} h={25} _hover={{ color: 'gray.600' }} />
               </Link>
             </Flex>
           </Flex>

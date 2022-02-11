@@ -8,6 +8,8 @@ import { useSearch } from '../../../lib/searchState';
 export default function Search() {
   const { search, setSearch, clearSearch } = useSearch();
   const onChange = (e) => {
+    // handle edge case where inputting backward slash causes an error
+    if (e.nativeEvent.data === '\\') return;
     setSearch(e.target.value);
   };
 

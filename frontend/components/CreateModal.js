@@ -113,7 +113,7 @@ export default function CreateModal() {
       {/* plus button for mobile screen width */}
       <Button
         onClick={onOpen}
-        bg={useColorModeValue('green.200', 'gray.400')}
+        bg={useColorModeValue('green.200', 'white')}
         color="black"
         m={5}
         display={{ base: 'flex', md: 'none' }}
